@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 
 const Home: NextPage = () => {
-  console.log("ok");
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
