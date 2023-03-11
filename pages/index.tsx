@@ -3,8 +3,6 @@ import Head from "next/head";
 import { Firebase } from "~/base/helpers/firebase";
 
 const Home: NextPage = ({ books }: any) => {
-  console.log("BOOKS", books);
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
