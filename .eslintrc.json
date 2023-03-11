@@ -26,6 +26,8 @@
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ]
+    ],
+    "no-unused-vars": "error",
+    "no-console": "error"
   }
 }
