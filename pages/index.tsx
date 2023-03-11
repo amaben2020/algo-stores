@@ -11,7 +11,7 @@ const Home: NextPage = ({ products }: TProducts) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>Home Page</title>
+        <title>Home Page here</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
