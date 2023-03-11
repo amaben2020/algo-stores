@@ -8,9 +8,11 @@
     "prepush": "jshint index.js"
   },
   "dependencies": {
+    "firebase": "^9.17.2",
     "next": "latest",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.1.1"
   },
   "devDependencies": {
     "@types/node": "18.11.3",

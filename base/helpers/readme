@@ -1,0 +1,5 @@
+https://www.educative.io/answers/what-is-a-firestore-collection
+
+The most familiar database form database is a relational database, like SQLite, which stores data in the form of tables and keeps data consistent using relationships. However, Firebase’s Firestore service is a no-SQL database that stores all of its data in the form of collections instead of tables.
+
+Just as a table in a relational database stores individual entries in the form of rows, a Firestore collection consists of documents. A document has fields with corresponding values, like a key-value pair. A field can be made up of different types (e.g., string, number, array, boolean, etc.).
