@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Firebase } from "~/base/helpers/firebase";
 import { ENDPOINTS, api } from "~/base/lib/axios";
-import { IProducts } from "./types";
+import IProducts from "../types/types";
 
 type TProducts = {
   products?: IProducts[];
