@@ -34,6 +34,7 @@ export class Firebase {
       FIREBASE_CONFIG.collection,
       FIREBASE_CONFIG.document,
     );
+
     const documentRef = await getDoc(document);
 
     return documentRef.exists() ? documentRef.data() : {};
