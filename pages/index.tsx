@@ -1,7 +1,7 @@
-import axios from "axios";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Firebase } from "~/base/helpers/firebase";
+import { ENDPOINTS, api } from "~/base/lib/axios";
 import { IProducts } from "./types";
 
 type TProducts = {
@@ -29,8 +29,8 @@ export const getServerSideProps = async () => {
 
   const books = await fb.getDocument();
 
-  const { data }: Awaited<{ data: IProducts }> = await axios.get(
-    "https://fakestoreapi.com/products",
+  const { data }: Awaited<{ data: IProducts }> = await api.get(
+    ENDPOINTS.products,
   );
 
   return {
