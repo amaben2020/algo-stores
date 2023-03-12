@@ -8,7 +8,7 @@ const Logo = () => {
         <LightningBoltIcon className="h-8 w-8 flex-shrink-0 mr-3" />
 
         <span className="font-bold text-3xl font-sans tracking-tight whitespace-nowrap">
-          Next-js Dev
+          Algo Stores
         </span>
       </a>
     </Link>

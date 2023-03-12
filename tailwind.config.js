@@ -5,6 +5,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./node_modules/flowbite/**/*.js",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{ts,tsx}",
     "./public/**/*.html",
   ],

@@ -19,7 +19,7 @@ const Header = () => {
     if (currentTheme === "dark") {
       return (
         <SunIcon
-          className="w-1 h-1 text-yellow-500"
+          className="w-10 h-10 text-yellow-500"
           role="button"
           onClick={() => setTheme("light")}
         />
@@ -36,11 +36,8 @@ const Header = () => {
   };
 
   return (
-    <header className="h-15 shadow-sm dark:border-gray-700">
-      <div
-        style={{ display: "flex", justifyContent: "space-between" }}
-        className=" p-96 px-4 sm:px-6 py-4 flex justify-between items-center"
-      >
+    <header className="none h-15 shadow-sm dark:border-gray-700">
+      <div className="px-4 sm:px-6 py-4 flex justify-between items-center">
         <Logo />
 
         {renderThemeChanger()}
