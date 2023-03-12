@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @layer base - the base layer of our styles, "h1", "h2", "p". */
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 dark:bg-black dark:text-gray-100;
+
+    @apply p-10;
+  }
+
+  ::selection {
+    @apply text-white bg-indigo-500;
+  }
+
+  svg {
+    max-height: 48px;
+    max-width: 48px;
+  }
+
+  .btn {
+    @apply inline-block px-5 py-3 rounded-lg hover:bg-indigo-600 transition duration-300 shadow-lg bg-indigo-500 text-white capitalize tracking-wider font-semibold text-sm sm:text-xl focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 whitespace-nowrap;
+  }
+}
+
+/* @layer components - used for things styling entire components like "Nav" or "cta-btn". */
+@layer components {
+  .cta-btn {
+    @apply bg-reddish text-[22px] text-white py-3 px-8 rounded-full hover:opacity-70 transition whitespace-nowrap;
+  }
+}
+
+/* @layer utilities - these are universal classes that are present everywhere throughout your code like "flex-col" "opac-half". */
+@layer utilities {
+  .accent-gradient {
+    @apply bg-gradient-to-b from-[#ee2e1d] to-[#ffb1b5];
+  }
+  .horizontal {
+    @apply border-b border-b-[#e8e8e8];
+  }
+  .horizontal-top {
+    @apply border-t border-b-[#e8e8e8];
+  }
+}
