@@ -1,4 +1,4 @@
-import Logo from "@/components/elements/Logo";
+import Logo from "@/components/elements/Logo/index";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
