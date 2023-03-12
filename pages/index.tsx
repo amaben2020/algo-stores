@@ -1,3 +1,5 @@
+import Card from "@/components/elements/Card";
+import Layout from "@/components/layouts/Main";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Firebase } from "~/base/helpers/firebase";
@@ -7,18 +9,28 @@ import IProducts from "../types/types";
 type TProducts = {
   products?: IProducts[];
 };
+
 const Home: NextPage = ({ products }: TProducts) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <Layout>
       <Head>
         <title>Home Page here</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {products?.map((product) => (
-        <div key={product.id}>{product.title}</div>
-      ))}
-    </div>
+      <div className="flex flex-wrap  justify-center  ">
+        {products?.map((product) => (
+          <Card
+            key={product.id}
+            title={product.title}
+            image={product.image}
+            description={product.description}
+            price={product.price}
+            category={product.category}
+          />
+        ))}
+      </div>
+    </Layout>
   );
 };
 

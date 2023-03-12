@@ -11,10 +11,14 @@
     "commit": "commit-wizard"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
     "axios": "^1.3.4",
     "firebase": "^9.17.2",
+    "flowbite": "^1.6.4",
+    "flowbite-react": "^0.4.2",
     "jest": "^29.5.0",
     "next": "latest",
+    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1"
@@ -36,13 +40,13 @@
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^10.4.14",
     "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",
     "lint-staged": "^13.2.0",
-    "postcss": "^8.4.18",
+    "postcss": "^8.4.21",
     "pre-git": "^0.0.16",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "^3.2.7",
     "typescript": "4.9.4"
   },
   "release": {
