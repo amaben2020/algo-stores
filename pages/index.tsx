@@ -20,7 +20,13 @@ const Home: NextPage = ({ products }: TProducts) => {
 
       <div className="flex flex-wrap  justify-center  ">
         {products?.map((product) => (
-          <Card key={product.id} title={product.title} image={product.image} />
+          <Card
+            key={product.id}
+            title={product.title}
+            image={product.image}
+            description={product.description}
+            price={product.price}
+          />
         ))}
       </div>
     </Layout>

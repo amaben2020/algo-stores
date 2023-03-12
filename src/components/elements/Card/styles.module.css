@@ -7,9 +7,10 @@
 
 .image {
   min-width: 100%;
-  height: 300px;
+  border-radius: 10px;
+  height: 350px;
   object-fit: cover;
   object-position: center;
-  overflow: hidden;
-  aspect-ratio: 2/1;
+
+  object-position: 10% 20%;
 }
