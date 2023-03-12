@@ -26,6 +26,7 @@ const Home: NextPage = ({ products }: TProducts) => {
             image={product.image}
             description={product.description}
             price={product.price}
+            category={product.category}
           />
         ))}
       </div>
