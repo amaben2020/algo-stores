@@ -1,3 +1,4 @@
+import Card from "@/components/elements/Card";
 import Layout from "@/components/layouts/Main";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -17,11 +18,11 @@ const Home: NextPage = ({ products }: TProducts) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {products?.map((product) => (
-        <div className="leading-snug" key={product.id}>
-          {product.title}
-        </div>
-      ))}
+      <div className="flex flex-wrap  justify-center  ">
+        {products?.map((product) => (
+          <Card key={product.id} title={product.title} image={product.image} />
+        ))}
+      </div>
     </Layout>
   );
 };
