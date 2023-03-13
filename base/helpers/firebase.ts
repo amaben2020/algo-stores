@@ -1,6 +1,15 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 
 import { db } from "@/firebase/index";
+
+import IProducts from "~/types/types";
 import { FIREBASE_CONFIG } from "./enum";
 
 export class Firebase {
@@ -38,5 +47,33 @@ export class Firebase {
     const documentRef = await getDoc(document);
 
     return documentRef.exists() ? documentRef.data() : {};
+  }
+
+  async addToFavorites(id: string, data: IProducts) {
+    const favoritesCollection = collection(db, "favorites");
+
+    await setDoc(doc(favoritesCollection, id), data);
+
+    const favoritesRef = doc(db, "favorites", id);
+
+    const favoritesSnapShot = await getDoc(favoritesRef);
+
+    return favoritesSnapShot.exists() || favoritesSnapShot.data()
+      ? "Succesful operation"
+      : "Failed to create";
+  }
+
+  async deleteFromFavorites(id: string) {
+    await deleteDoc(doc(db, "favorites", id));
+  }
+
+  async getFavorites() {
+    const querySnapshot = await getDocs(collection(db, "favorites"));
+    const favorites: any = [];
+    querySnapshot.forEach((doc) => {
+      favorites.push(doc.data());
+    });
+
+    return favorites;
   }
 }
