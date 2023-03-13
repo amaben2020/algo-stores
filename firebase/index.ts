@@ -3,16 +3,15 @@ import "firebase/compat/firestore";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC-j43_PzUe5vtBURpUh36KeDdqiT07RI4",
-  authDomain: "algo-store.firebaseapp.com",
-  projectId: "algo-store",
-  storageBucket: "algo-store.appspot.com",
-  messagingSenderId: "876446205919",
-  appId: "1:876446205919:web:6fd532efe860b9314fe66a",
-  measurementId: "G-MK66JVZZM3",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: "algo-stores-1.firebaseapp.com",
+  projectId: "algo-stores-1",
+  storageBucket: "algo-stores-1.appspot.com",
+  messagingSenderId: "235192376879",
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: "G-NTS34VM4JX",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
