@@ -114,7 +114,7 @@ const Card = ({
           height={300}
           quality={100}
           className={styles.image}
-          priority
+          loading="lazy"
         />
         <div className="py-4 flex justify-between">
           <h2 className="w-60">{title.substring(0, 28)}...</h2>
