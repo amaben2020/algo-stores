@@ -4,15 +4,14 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "algo-store.firebaseapp.com",
-  projectId: "algo-store",
-  storageBucket: "algo-store.appspot.com",
-  messagingSenderId: "876446205919",
+  authDomain: "algo-stores-1.firebaseapp.com",
+  projectId: "algo-stores-1",
+  storageBucket: "algo-stores-1.appspot.com",
+  messagingSenderId: "235192376879",
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: "G-MK66JVZZM3",
+  measurementId: "G-NTS34VM4JX",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);

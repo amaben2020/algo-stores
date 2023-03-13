@@ -2,7 +2,7 @@ import Card from "@/components/elements/Card";
 import Layout from "@/components/layouts/Main";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Firebase } from "~/base/helpers/firebase";
+
 import { ENDPOINTS, api } from "~/base/lib/axios";
 import IProducts from "../types/types";
 
@@ -38,18 +38,13 @@ const Home: NextPage = ({ products }: TProducts) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  const fb = new Firebase();
-
-  const books = await fb.getDocument();
-
   const { data }: Awaited<{ data: IProducts }> = await api.get(
     ENDPOINTS.products,
   );
 
   return {
     props: {
-      books,
-      products: data,
+      products: data ?? [],
     },
   };
 };
