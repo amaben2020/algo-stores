@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { DocumentData } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Firebase } from "~/base/helpers/firebase";
 import IProducts from "~/types/types";
@@ -13,7 +14,7 @@ const Card = ({
   price,
   category,
 }: IProducts) => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState<DocumentData>([]);
   const firebase = new Firebase();
   useEffect(() => {
     (async () => {

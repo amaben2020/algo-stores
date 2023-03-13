@@ -1,4 +1,5 @@
 import {
+  DocumentData,
   collection,
   deleteDoc,
   doc,
@@ -10,10 +11,12 @@ import {
 import { db } from "@/firebase/index";
 
 import IProducts from "~/types/types";
-import { FIREBASE_CONFIG } from "./enum";
+import { FIREBASE_CONFIG, FIREBASE_FAVORITE_CONFIG } from "./enum";
 
 export class Firebase {
-  async setDocument(data: Record<string, string>) {
+  async setDocument(
+    data: Record<string, string>,
+  ): Promise<"Succesful operation" | "Failed to create"> {
     // replace with orders collection when its ready
     const orderCollection = collection(db, "cities");
 
@@ -37,7 +40,7 @@ export class Firebase {
       : "Failed to create";
   }
 
-  async getDocument() {
+  async getDocument(): Promise<DocumentData> {
     const document = doc(
       db,
       FIREBASE_CONFIG.collection,
@@ -50,11 +53,14 @@ export class Firebase {
   }
 
   async addToFavorites(id: string, data: IProducts) {
-    const favoritesCollection = collection(db, "favorites");
+    const favoritesCollection = collection(
+      db,
+      FIREBASE_FAVORITE_CONFIG.collection,
+    );
 
     await setDoc(doc(favoritesCollection, id), data);
 
-    const favoritesRef = doc(db, "favorites", id);
+    const favoritesRef = doc(db, FIREBASE_FAVORITE_CONFIG.collection, id);
 
     const favoritesSnapShot = await getDoc(favoritesRef);
 
@@ -64,12 +70,14 @@ export class Firebase {
   }
 
   async deleteFromFavorites(id: string) {
-    await deleteDoc(doc(db, "favorites", id));
+    await deleteDoc(doc(db, FIREBASE_FAVORITE_CONFIG.collection, id));
   }
 
-  async getFavorites() {
-    const querySnapshot = await getDocs(collection(db, "favorites"));
-    const favorites: any = [];
+  async getFavorites(): Promise<DocumentData> {
+    const querySnapshot = await getDocs(
+      collection(db, FIREBASE_FAVORITE_CONFIG.collection),
+    );
+    const favorites: DocumentData = [];
     querySnapshot.forEach((doc) => {
       favorites.push(doc.data());
     });
