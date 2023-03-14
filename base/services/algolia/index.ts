@@ -8,6 +8,11 @@ class AlgoliaService {
       process.env.NEXT_ALGOLIA_APP_ID ?? "",
       process.env.ALGOLIA_API_KEY ?? "",
     );
-    this.index = this.client.initIndex(process.env.NEXT_ALGOLIA_APP_ID ?? "");
+    this.index = this.client.initIndex("algo-stores");
+  }
+
+  async saveObjectsToAlgolia() {
+    try {
+    } catch (error) {}
   }
 }
