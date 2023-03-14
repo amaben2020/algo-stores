@@ -24,11 +24,16 @@ const Card = ({
         const data = await firebase.getFavorites();
 
         setFavorites(data);
+        // eslint-disable-next-line no-console
+        console.log("SetFavorites Data Effect called");
       } catch (error) {
         if (error instanceof Error) alert(error.message);
       }
     })();
   }, []);
+
+  // eslint-disable-next-line no-console
+  console.log("The Component itself");
 
   const isFavorited =
     favorites.findIndex((elem: IProducts) => elem.id == id) > -1;
