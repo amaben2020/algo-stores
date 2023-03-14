@@ -1,6 +1,6 @@
 import algoliasearch from "algoliasearch";
-import { AlgoliaError } from "base/api/errors/algolia-error";
 import IProducts from "types/types";
+import { AlgoliaError } from "~/base/api/errors/algolia-error";
 
 export class AlgoliaService {
   client;
