@@ -18,7 +18,7 @@ const Home: NextPage = ({ products }: TProducts) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-wrap  justify-center  ">
+      <div className="flex flex-wrap justify-center ">
         {products?.map((product) => (
           <Card
             key={product.id}
@@ -41,6 +41,11 @@ export const getServerSideProps = async () => {
   const { data }: Awaited<{ data: IProducts }> = await api.get(
     ENDPOINTS.products,
   );
+
+  // Run this script if products are updated in the future
+  // await axios.post("http://localhost:3000/api/algolia", {
+  //   data,
+  // });
 
   return {
     props: {

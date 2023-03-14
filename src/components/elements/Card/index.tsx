@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { DocumentData } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Firebase } from "~/base/helpers/firebase";
+import { Firebase } from "~/base/services/firebase";
 import IProducts from "~/types/types";
 import styles from "./styles.module.css";
 
@@ -17,6 +17,8 @@ const Card = ({
   const [favorites, setFavorites] = useState<DocumentData>([]);
   const firebase = new Firebase();
   useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log("Effect called");
     (async () => {
       try {
         const data = await firebase.getFavorites();
@@ -26,7 +28,7 @@ const Card = ({
         if (error instanceof Error) alert(error.message);
       }
     })();
-  }, [favorites]);
+  }, []);
 
   const isFavorited =
     favorites.findIndex((elem: IProducts) => elem.id == id) > -1;
@@ -45,6 +47,7 @@ const Card = ({
 
       if (info === "Succesful operation") {
         // change this to use toast
+        window.location.reload();
         alert(`
           Product:  ${title} with id: ${id} successfully added to favorites
         `);
@@ -73,7 +76,7 @@ const Card = ({
       <div className={styles["image-container"]}>
         {!isFavorited ? (
           <button
-            className="absolute top-4 right-2 text-gray-600 z-30"
+            className="absolute z-30 text-gray-600 top-4 right-2"
             onClick={handleAddToFavorite}
           >
             <svg
@@ -93,7 +96,7 @@ const Card = ({
           </button>
         ) : (
           <button
-            className="absolute top-4 right-2 text-red-600 z-30 hover:animate-bounce"
+            className="absolute z-30 text-red-600 top-4 right-2 hover:animate-bounce"
             onClick={() => handleRemoveFromFavorites(String(id))}
           >
             <svg
@@ -114,9 +117,9 @@ const Card = ({
           height={300}
           quality={100}
           className={styles.image}
-          priority
+          loading="lazy"
         />
-        <div className="py-4 flex justify-between">
+        <div className="flex justify-between py-4">
           <h2 className="w-60">{title.substring(0, 28)}...</h2>
 
           <p>$ {price.toFixed(2)}</p>
@@ -128,7 +131,7 @@ const Card = ({
 
         <div className="my-2">{category}</div>
       </div>
-      <button className="absolute -bottom-3 rounded-full border-2 border-indigo-500 text-indigo-800 dark:bg-green-700 dark:border-green-400  dark:text-white p-3 px-6 hover:border-white hover:bg-indigo-500 hover:text-white transition-all  ">
+      <button className="absolute p-3 px-6 text-indigo-800 transition-all border-2 border-indigo-500 rounded-full -bottom-3 dark:bg-green-700 dark:border-green-400 dark:text-white hover:border-white hover:bg-indigo-500 hover:text-white ">
         Add to cart
       </button>
     </div>
