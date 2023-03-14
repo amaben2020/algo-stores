@@ -1,3 +1,4 @@
+import Search from "@/components/elements/Search";
 import Logo from "@/components/elements/logo";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 import { useTheme } from "next-themes";
@@ -38,10 +39,10 @@ const Header = () => {
   };
 
   return (
-    <header className="h-15 shadow-sm dark:border-gray-700">
-      <div className="px-1 sm:px-2 py-4 flex justify-between items-center">
+    <header className="shadow-sm h-15 dark:border-gray-700">
+      <div className="flex items-center justify-between px-1 py-4 sm:px-2">
         <Logo />
-
+        <Search />
         {renderThemeChanger()}
       </div>
     </header>

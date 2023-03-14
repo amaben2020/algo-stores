@@ -22,7 +22,8 @@
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-firebase-hooks": "^5.1.1"
+    "react-firebase-hooks": "^5.1.1",
+    "react-instantsearch-hooks-web": "^6.41.0"
   },
   "lint-staged": {
     "**/*.ts": "prettier --write --ignore-unknown"
