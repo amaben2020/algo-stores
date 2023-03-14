@@ -3,6 +3,7 @@ import Layout from "@/components/layouts/Main";
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import axios from "axios";
 import { ENDPOINTS, api } from "~/base/lib/axios";
 import IProducts from "../types/types";
 
@@ -41,6 +42,11 @@ export const getServerSideProps = async () => {
   const { data }: Awaited<{ data: IProducts }> = await api.get(
     ENDPOINTS.products,
   );
+
+  // Run this script if products are updated in the future
+  // await axios.post("http://localhost:3000/api/algolia", {
+  //   data,
+  // });
 
   return {
     props: {
