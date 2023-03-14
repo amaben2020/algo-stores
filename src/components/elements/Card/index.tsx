@@ -33,7 +33,7 @@ const Card = ({
   }, []);
 
   // eslint-disable-next-line no-console
-  console.log("The Component itself");
+  console.log("The Component itself.");
 
   const isFavorited =
     favorites.findIndex((elem: IProducts) => elem.id == id) > -1;
