@@ -3,7 +3,6 @@ import Layout from "@/components/layouts/Main";
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import axios from "axios";
 import { ENDPOINTS, api } from "~/base/lib/axios";
 import IProducts from "../types/types";
 
@@ -19,7 +18,7 @@ const Home: NextPage = ({ products }: TProducts) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-wrap  justify-center  ">
+      <div className="flex flex-wrap justify-center ">
         {products?.map((product) => (
           <Card
             key={product.id}
