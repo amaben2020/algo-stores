@@ -1,89 +1,16 @@
 import Image from "next/image";
 
-import { DocumentData } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { Firebase } from "~/base/services/firebase";
 import IProducts from "~/types/types";
 import styles from "./styles.module.css";
 
-const Card = ({
-  id,
-  title,
-  image,
-  description,
-  price,
-  category,
-}: IProducts) => {
-  const [favorites, setFavorites] = useState<DocumentData>([]);
-  const firebase = new Firebase();
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log("Effect called");
-    (async () => {
-      try {
-        const data = await firebase.getFavorites();
-
-        setFavorites(data);
-        // eslint-disable-next-line no-console
-        console.log("SetFavorites Data Effect called");
-      } catch (error) {
-        if (error instanceof Error) alert(error.message);
-      }
-    })();
-  }, []);
-
-  // eslint-disable-next-line no-console
-  console.log("The Component itself.");
-
-  const isFavorited =
-    favorites.findIndex((elem: IProducts) => elem.id == id) > -1;
-
-  const handleAddToFavorite = async () => {
-    const data = {
-      id,
-      title,
-      image,
-      description,
-      price,
-      category,
-    };
-    try {
-      const info = await firebase.addToFavorites(String(id), data);
-
-      if (info === "Succesful operation") {
-        // change this to use toast
-        window.location.reload();
-        alert(`
-          Product:  ${title} with id: ${id} successfully added to favorites
-        `);
-
-        return info;
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        alert("Failed");
-      }
-    }
-  };
-
-  const handleRemoveFromFavorites = async (id: string) => {
-    try {
-      await firebase.deleteFromFavorites(id);
-    } catch (error) {
-      if (error instanceof Error) {
-        alert("Failed");
-      }
-    }
-  };
+const Card = ({ title, image, description, price, category }: IProducts) => {
+  const isFavorited = false;
 
   return (
     <div className="w-96 relative h-[530px] m-6 cursor-pointer rounded-md">
       <div className={styles["image-container"]}>
         {!isFavorited ? (
-          <button
-            className="absolute z-30 text-gray-600 top-4 right-2"
-            onClick={handleAddToFavorite}
-          >
+          <button className="absolute z-30 text-gray-600 top-4 right-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="gray"
@@ -100,10 +27,7 @@ const Card = ({
             </svg>
           </button>
         ) : (
-          <button
-            className="absolute z-30 text-red-600 top-4 right-2 hover:animate-bounce"
-            onClick={() => handleRemoveFromFavorites(String(id))}
-          >
+          <button className="absolute z-30 text-red-600 top-4 right-2 hover:animate-bounce">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
