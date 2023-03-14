@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { DocumentData } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Firebase } from "~/base/helpers/firebase";
+import { Firebase } from "~/base/services/firebase";
 import IProducts from "~/types/types";
 import styles from "./styles.module.css";
 

@@ -11,7 +11,7 @@ import {
 import { db } from "@/firebase/index";
 
 import IProducts from "~/types/types";
-import { FIREBASE_CONFIG, FIREBASE_FAVORITE_CONFIG } from "./enum";
+import { FIREBASE_CONFIG, FIREBASE_FAVORITE_CONFIG } from "../../helpers/enum";
 
 export class Firebase {
   async setDocument(
