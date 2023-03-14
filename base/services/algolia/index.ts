@@ -28,7 +28,7 @@ export class AlgoliaService {
 
       return isSuccess;
     } catch (error) {
-      throw new AlgoliaError(error.message);
+      if (error instanceof Error) throw new AlgoliaError(error.message);
     }
   }
 }
