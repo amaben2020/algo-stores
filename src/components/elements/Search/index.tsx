@@ -69,7 +69,10 @@ function Search() {
   }
   return (
     <InstantSearch searchClient={searchClient} indexName="algo-stores">
-      <SearchBox placeholder="Search for products" />
+      <SearchBox
+        placeholder="Search for products"
+        className="dark:text-gray-800"
+      />
 
       <CustomSearchBox />
     </InstantSearch>
