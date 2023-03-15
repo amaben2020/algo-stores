@@ -39,7 +39,7 @@ const Header = () => {
   };
 
   return (
-    <header className="shadow-sm h-15 dark:border-gray-700">
+    <header className="relative shadow-sm h-15 dark:border-gray-700">
       <div className="flex items-center justify-between px-1 py-4 sm:px-2">
         <Logo />
         <Search />

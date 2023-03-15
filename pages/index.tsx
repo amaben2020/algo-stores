@@ -1,5 +1,5 @@
 import Card from "@/components/elements/Card";
-import Layout from "@/components/layouts/Main";
+import Layout from "@/components/layouts/Page";
 import type { NextPage } from "next";
 import Head from "next/head";
 

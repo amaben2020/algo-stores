@@ -1,0 +1,16 @@
+.image-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.image {
+  min-width: 100%;
+  border-radius: 10px;
+  height: 350px;
+  object-fit: cover;
+  object-position: center;
+
+  object-position: 10% 20%;
+}
