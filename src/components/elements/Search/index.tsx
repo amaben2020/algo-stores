@@ -17,9 +17,22 @@ const searchClient = algoliasearch(
 function Hit({ hit }: any): any {
   // hit is the result of a query
 
+  const slugifyHit = (category: string) => {
+    if (category.includes("men")) {
+      return "men";
+    } else if (category.includes("women")) {
+      return "women";
+    }
+
+    return category;
+  };
+
   return (
     <div className="p-10 bg-white">
-      <Link href={hit.category} style={{ width: "90%" }}>
+      <Link
+        href={`/category/${slugifyHit(hit.category)}`}
+        style={{ width: "90%" }}
+      >
         <div className="flex">
           <Image
             src={hit.image}
