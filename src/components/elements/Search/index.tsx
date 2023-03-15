@@ -8,30 +8,21 @@ import {
   useSearchBox,
   UseSearchBoxProps,
 } from "react-instantsearch-hooks-web";
+import { slugifyHit } from "~/base/helpers/sligifyHit";
+import { IHits } from "./types";
 
 const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID ?? "",
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY ?? "",
 );
 
-function Hit({ hit }: any): any {
-  // hit is the result of a query
-
-  const slugifyHit = (category: string) => {
-    if (category.includes("men")) {
-      return "men";
-    } else if (category.includes("women")) {
-      return "women";
-    }
-
-    return category;
-  };
-
+function Hit({ hit }: IHits) {
   return (
     <div className="p-10 bg-white">
       <Link
         href={`/category/${slugifyHit(hit.category)}`}
         style={{ width: "90%" }}
+        className="dark:text-black"
       >
         <div className="flex">
           <Image
@@ -78,13 +69,7 @@ function Search() {
   }
   return (
     <InstantSearch searchClient={searchClient} indexName="algo-stores">
-      <SearchBox
-        placeholder="Search for products"
-        autoFocus
-        loadingIconComponent={({ classNames }) => (
-          <div className={classNames.loadingIcon}>Loading</div>
-        )}
-      />
+      <SearchBox placeholder="Search for products" />
 
       <CustomSearchBox />
     </InstantSearch>
