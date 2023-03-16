@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from "~/app/hooks/hooks";
 import { login } from "~/app/redux/features/user/user-slice";
 import { RootState } from "~/app/redux/store/store";
 
+//TODO: Extract to a useAuth hook and return signin, signup, userSession
+
 export default function LoginButton() {
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useAppDispatch();

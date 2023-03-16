@@ -13,6 +13,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // override styles here i.e black, gray etc.
         white: "#ffffff",
       },
     },
@@ -22,3 +23,5 @@ module.exports = {
   },
   plugins: [require("flowbite/plugin")],
 };
+
+// TODO: Add tailwind typography
