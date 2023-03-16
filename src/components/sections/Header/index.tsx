@@ -3,10 +3,13 @@ import Logo from "@/components/elements/logo";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "~/app/hooks/hooks";
+import { RootState } from "~/app/redux/store/store";
 
 const Header = () => {
   const [mounted, setMounted] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
+  const user = useAppSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
     setMounted(true);
@@ -43,6 +46,7 @@ const Header = () => {
       <div className="flex items-center justify-between px-1 py-4 sm:px-2">
         <Logo />
         <Search />
+        {user.name && user.name}
         {renderThemeChanger()}
       </div>
     </header>
