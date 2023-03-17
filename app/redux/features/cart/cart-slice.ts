@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
       const itemToUpdate = state.items.findIndex(
         (product) => product.id === action.payload.id,
       );
-      if (action.payload.id && action.payload.quantity > 1) {
+      if (action.payload.id && action.payload?.quantity >= 1) {
         state.items[itemToUpdate].quantity = action.payload.quantity;
       } else {
         state.items[itemToUpdate].quantity = 1;
