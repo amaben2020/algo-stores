@@ -20,12 +20,13 @@ export const cartSlice = createSlice({
 
     //TODO: update cart with quantity
     updateCart: (state, action: PayloadAction<IProducts>) => {
-      if (action.payload.id) {
-        const itemToUpdate = state.items.findIndex(
-          (product) => product.id === action.payload.id,
-        );
-
+      const itemToUpdate = state.items.findIndex(
+        (product) => product.id === action.payload.id,
+      );
+      if (action.payload.id && action.payload.quantity > 1) {
         state.items[itemToUpdate].quantity = action.payload.quantity;
+      } else {
+        state.items[itemToUpdate].quantity = 1;
       }
     },
     // deleteItemFromCart: (state, action: PayloadAction<IProducts>) => {},

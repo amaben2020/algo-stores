@@ -1,10 +1,9 @@
-import Image from "next/image";
-import { useState } from "react";
-import { useAppSelector } from "~/app/hooks/hooks";
-import { RootState } from "~/app/redux/store/store";
-import IProducts from "~/types/types";
 import { useAppDispatch } from "app/hooks/hooks";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { updateCart } from "~/app/redux/features/cart/cart-slice";
+import IProducts from "~/types/types";
 type TCartItems = { cartItems: IProducts[] };
 
 const Cart = ({ cartItems }: TCartItems) => {
@@ -13,6 +12,8 @@ const Cart = ({ cartItems }: TCartItems) => {
   const [itemId, setItemId] = useState(null);
   const dispatch = useAppDispatch();
   const [itemQty, setItemQty] = useState(0);
+
+  const router = useRouter();
 
   const handleCartQuantity = (e: any, id) => {
     setItemQty(e.target.value);
@@ -59,7 +60,11 @@ const Cart = ({ cartItems }: TCartItems) => {
 
       <div>
         <button
-          onClick={() => handleCheckoutCart()}
+          onClick={() => {
+            handleCheckoutCart();
+
+            router.push("/cart");
+          }}
           className="w-full py-4 border-2 hover:bg-indigo-600 hover:text-white"
         >
           <h2 className="text-lg"> Checkout </h2>
