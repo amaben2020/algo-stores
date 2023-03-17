@@ -19,11 +19,19 @@ export const cartSlice = createSlice({
     },
 
     //TODO: update cart with quantity
-    // updateCart: (state, action: PayloadAction<IProducts>) => {},
+    updateCart: (state, action: PayloadAction<IProducts>) => {
+      if (action.payload.id) {
+        const itemToUpdate = state.items.findIndex(
+          (product) => product.id === action.payload.id,
+        );
+
+        state.items[itemToUpdate].quantity = action.payload.quantity;
+      }
+    },
     // deleteItemFromCart: (state, action: PayloadAction<IProducts>) => {},
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

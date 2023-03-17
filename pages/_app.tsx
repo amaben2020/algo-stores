@@ -4,6 +4,8 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import "tailwindcss/tailwind.css";
@@ -18,6 +20,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <ThemeProvider enableSystem={true} attribute="class">
           <PersistGate loading={<HomePageLoading />} persistor={persistor}>
             <Component {...pageProps} />
+            <ToastContainer position="top-center" />
           </PersistGate>
         </ThemeProvider>
       </SessionProvider>

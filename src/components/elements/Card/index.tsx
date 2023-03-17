@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { useAppSelector, useAppDispatch } from "~/app/hooks/hooks";
 import { RootState } from "app/redux/store/store";
 import { addToCart } from "~/app/redux/features/cart/cart-slice";
+import { toast } from "react-toastify";
 //TODO: make add to cart button a different component that receives an onClick handler
 
 const Card = ({
@@ -35,6 +36,7 @@ const Card = ({
 
   const handleAddItemToCart = () => {
     dispatch(addToCart(cartItem));
+    toast(`Product ${title} successfully added`);
   };
 
   return (

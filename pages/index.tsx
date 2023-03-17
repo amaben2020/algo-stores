@@ -14,14 +14,13 @@ type TProducts = {
 
 const Home: NextPage = ({ products }: TProducts) => {
   const user = useAppSelector((state: RootState) => state.user.user);
+ 
   return (
     <Layout>
       <Head>
         <title>Home Page here</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <h2>{user.name && user.name}</h2>
 
       <div className="flex flex-wrap justify-center ">
         {products?.map((product) => (
