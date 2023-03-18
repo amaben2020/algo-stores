@@ -1,4 +1,5 @@
 import Cart from "@/components/elements/Cart";
+import Notification from "@/components/elements/Notification";
 import Search from "@/components/elements/Search";
 import Logo from "@/components/elements/logo";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
@@ -14,6 +15,7 @@ const Header = () => {
   const cart = useAppSelector((state: RootState) => state.cart.items);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -86,7 +88,6 @@ const Header = () => {
           </svg>
           <p className="relative ml-3">Cart </p>
         </button>
-
         {isOpen && cart.length > 0 ? (
           <div>
             <Cart cartItems={cart} />
@@ -94,6 +95,31 @@ const Header = () => {
         ) : (
           <p> </p>
         )}
+
+        <button
+          className="relative"
+          onClick={() => setIsNotificationOpen((p) => !p)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+            />
+          </svg>
+          <div className="absolute p-0.5 bg-red-600 w-6  rounded-full -right-2 -top-5">
+            3
+          </div>
+        </button>
+
+        {isNotificationOpen && <Notification />}
 
         {renderThemeChanger()}
       </div>

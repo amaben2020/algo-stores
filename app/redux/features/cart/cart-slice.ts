@@ -24,15 +24,17 @@ export const cartSlice = createSlice({
         (product) => product.id === action.payload.id,
       );
       if (action.payload.id && action.payload?.quantity >= 1) {
-        state.items[itemToUpdate].quantity = action.payload.quantity;
-      } else {
-        state.items[itemToUpdate].quantity = 1;
+        state.items[itemToUpdate].quantity = Number(action.payload.quantity);
       }
     },
-    // deleteItemFromCart: (state, action: PayloadAction<IProducts>) => {},
+    deleteItemFromCart: (state, action: PayloadAction<IProducts>) => {
+      state.items = state.items.filter(
+        (elem: IProducts) => elem.id !== Number(action.payload.id),
+      );
+    },
   },
 });
 
-export const { addToCart, updateCart } = cartSlice.actions;
+export const { addToCart, updateCart, deleteItemFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

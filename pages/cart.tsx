@@ -22,13 +22,15 @@ const Cart = () => {
     dispatch(
       updateCart({
         id: itemId,
-        quantity: quantity,
+        quantity,
       }),
     );
-    setQuantity(0);
+    setQuantity(1);
   };
 
   const dispatch = useAppDispatch();
+
+  //TODO: increment total based on quantity
 
   return (
     <Layout>
@@ -48,13 +50,11 @@ const Cart = () => {
 
             <div className="flex flex-col mx-10 space-y-5">
               <h2>{cart.title}</h2>
-
               <h3>$ {cart.price}</h3>
-
               <div>
                 <p>
                   Quantity : {cart.quantity ?? 1}{" "}
-                  {quantity > 1 && (
+                  {quantity >= 1 && (
                     <span className="font-bold text-green-900">{quantity}</span>
                   )}
                 </p>
@@ -67,7 +67,7 @@ const Cart = () => {
                     +
                   </button>
                   <button
-                    disabled={quantity === 1}
+                    disabled={quantity < 1}
                     className="px-6 py-3 font-bold border rounded-lg hover:text-white hover:bg-indigo-600 disabled:bg-gray-300"
                     onClick={() =>
                       setQuantity((p) => {
@@ -95,13 +95,16 @@ const Cart = () => {
 
         <div>
           Total : ${" "}
-          {cart
-            .reduce((acc, cv) => {
-              // simply adding all prices
-              acc += cv.price;
-              return acc;
-            }, 0)
-            .toFixed(2)}
+          {Number(
+            cart
+              .reduce((acc, cv) => {
+                const itemPrice = cv.price * Number(cv?.quantity);
+
+                acc += itemPrice;
+                return acc;
+              }, 0)
+              .toFixed(2),
+          )}
         </div>
       </div>
     </Layout>
