@@ -1,10 +1,10 @@
-import { useAppDispatch } from "app/hooks/hooks";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useAppDispatch } from "~/app/hooks/hooks";
 import {
-  updateCart,
   deleteItemFromCart,
+  updateCart,
 } from "~/app/redux/features/cart/cart-slice";
 import IProducts from "~/types/types";
 type TCartItems = { cartItems: IProducts[] };
@@ -12,23 +12,46 @@ type TCartItems = { cartItems: IProducts[] };
 const Cart = ({ cartItems }: TCartItems) => {
   // TODO:click outside to close cart
 
-  const [itemId, setItemId] = useState(null);
+  const [itemId, setItemId] = useState<number | undefined>();
   const dispatch = useAppDispatch();
   const [itemQty, setItemQty] = useState(0);
 
   const router = useRouter();
 
-  const handleCartQuantity = (e: any, id) => {
-    setItemQty(e.target.value);
-    setItemId(id);
+  const handleCartQuantity = (
+    e: ChangeEvent<HTMLSelectElement>,
+    id: number,
+  ) => {
+    setItemQty(Number(e.target.value));
+    setItemId(Number(id));
   };
 
   const handleCheckoutCart = () => {
-    dispatch(updateCart({ id: itemId, quantity: itemQty }));
+    dispatch(
+      updateCart({
+        id: Number(itemId),
+        quantity: itemQty,
+        category: "",
+        description: "",
+        image: "",
+        price: 0,
+        title: "",
+      }),
+    );
   };
 
   const handleDeleteCartItem = (id: number) => {
-    dispatch(deleteItemFromCart({ id }));
+    dispatch(
+      deleteItemFromCart({
+        id,
+        category: "",
+        description: "",
+        image: "",
+        price: 0,
+        title: "",
+        quantity: 0,
+      }),
+    );
   };
 
   return (
@@ -86,7 +109,6 @@ const Cart = ({ cartItems }: TCartItems) => {
         <button
           onClick={() => {
             handleCheckoutCart();
-
             router.push("/cart");
           }}
           className="w-full py-4 border-2 hover:bg-indigo-600 hover:text-white"

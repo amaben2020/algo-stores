@@ -103,8 +103,7 @@ const Cart = () => {
           {Number(
             cart
               .reduce((acc, cv) => {
-                const itemPrice = cv.price * Number(cv?.quantity);
-
+                const itemPrice = cv.price * Number(cv.quantity);
                 acc += itemPrice;
                 return acc;
               }, 0)

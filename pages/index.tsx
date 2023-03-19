@@ -14,7 +14,7 @@ type TProducts = {
 
 const Home: NextPage = ({ products }: TProducts) => {
   const user = useAppSelector((state: RootState) => state.user.user);
- 
+
   return (
     <Layout>
       <Head>
@@ -32,6 +32,7 @@ const Home: NextPage = ({ products }: TProducts) => {
             price={product.price}
             category={product.category}
             id={product.id}
+            quantity={1}
           />
         ))}
       </div>

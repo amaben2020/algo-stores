@@ -1,11 +1,11 @@
 import Image from "next/image";
 
+import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "~/app/hooks/hooks";
+import { addToCart } from "~/app/redux/features/cart/cart-slice";
+import { RootState } from "~/app/redux/store/store";
 import IProducts from "~/types/types";
 import styles from "./styles.module.css";
-import { useAppSelector, useAppDispatch } from "~/app/hooks/hooks";
-import { RootState } from "app/redux/store/store";
-import { addToCart } from "~/app/redux/features/cart/cart-slice";
-import { toast } from "react-toastify";
 //TODO: make add to cart button a different component that receives an onClick handler
 
 const Card = ({
@@ -32,6 +32,7 @@ const Card = ({
     description,
     price,
     category,
+    quantity: 1,
   };
 
   const handleAddItemToCart = () => {
