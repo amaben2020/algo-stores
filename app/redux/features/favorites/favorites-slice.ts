@@ -20,20 +20,10 @@ export const favoritesSlice = createSlice({
 
     //TODO: clear favorites after 3 days
 
-    updatefavorites: (state, action: PayloadAction<IProducts>) => {
-      const itemToUpdate = state.favorites.findIndex(
-        (product) => product.id === action.payload.id,
-      );
-      if (action.payload.id && action.payload?.quantity >= 1) {
-        state.favorites[itemToUpdate].quantity = Number(
-          action.payload.quantity,
-        );
-      }
-    },
     // deleteItemFromfavorites: (state, action: PayloadAction<IProducts>) => {},
   },
 });
 
-export const { addTofavorites, updatefavorites } = favoritesSlice.actions;
+export const { addTofavorites } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;

@@ -6,5 +6,5 @@ export default interface IProducts {
   price: number;
   rating?: Record<string, number>;
   title: string;
-  quantity?: number;
+  quantity: number;
 }

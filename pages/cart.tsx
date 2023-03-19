@@ -23,6 +23,11 @@ const Cart = () => {
       updateCart({
         id: itemId,
         quantity,
+        category: "",
+        description: "",
+        image: "",
+        price: 0,
+        title: "",
       }),
     );
     setQuantity(1);
