@@ -28,6 +28,7 @@ export const cartSlice = createSlice({
       }
     },
     deleteItemFromCart: (state, action: PayloadAction<IProducts>) => {
+      // when returning a new array and not performing a mutating operation i.e push etc, reassign the object
       state.items = state.items.filter(
         (elem: IProducts) => elem.id !== Number(action.payload.id),
       );

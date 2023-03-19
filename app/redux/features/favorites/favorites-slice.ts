@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import IProducts from "~/types/types";
 
 interface favoritesState {
-  items: IProducts[];
+  favorites: IProducts[];
 }
 
 const initialState: favoritesState = {
-  items: [],
+  favorites: [],
 };
 
 export const favoritesSlice = createSlice({
@@ -15,17 +15,19 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addTofavorites: (state, action: PayloadAction<IProducts>) => {
-      state.items.push(action.payload);
+      state.favorites.push(action.payload);
     },
 
     //TODO: clear favorites after 3 days
 
     updatefavorites: (state, action: PayloadAction<IProducts>) => {
-      const itemToUpdate = state.items.findIndex(
+      const itemToUpdate = state.favorites.findIndex(
         (product) => product.id === action.payload.id,
       );
       if (action.payload.id && action.payload?.quantity >= 1) {
-        state.items[itemToUpdate].quantity = Number(action.payload.quantity);
+        state.favorites[itemToUpdate].quantity = Number(
+          action.payload.quantity,
+        );
       }
     },
     // deleteItemFromfavorites: (state, action: PayloadAction<IProducts>) => {},
