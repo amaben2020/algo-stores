@@ -1,10 +1,44 @@
 import Image from "next/image";
 
+import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "~/app/hooks/hooks";
+import { addToCart } from "~/app/redux/features/cart/cart-slice";
+import { RootState } from "~/app/redux/store/store";
 import IProducts from "~/types/types";
 import styles from "./styles.module.css";
+//TODO: make add to cart button a different component that receives an onClick handler
 
-const Card = ({ title, image, description, price, category }: IProducts) => {
+const Card = ({
+  id,
+  title,
+  image,
+  description,
+  price,
+  category,
+}: IProducts) => {
   const isFavorited = false;
+
+  const cart = useAppSelector((state: RootState) => state.cart.items);
+
+  const isInCart =
+    cart.findIndex((cartItem) => cartItem.id === id) > -1 ? true : false;
+
+  const dispatch = useAppDispatch();
+
+  const cartItem = {
+    id,
+    title,
+    image,
+    description,
+    price,
+    category,
+    quantity: 1,
+  };
+
+  const handleAddItemToCart = () => {
+    dispatch(addToCart(cartItem));
+    toast(`Product ${title} successfully added`);
+  };
 
   return (
     <div className="w-96 relative h-[530px] m-6 cursor-pointer rounded-md">
@@ -60,8 +94,11 @@ const Card = ({ title, image, description, price, category }: IProducts) => {
 
         <div className="my-2">{category}</div>
       </div>
-      <button className="absolute p-3 px-6 text-indigo-800 transition-all border-2 border-indigo-500 rounded-full -bottom-3 dark:bg-green-700 dark:border-green-400 dark:text-white hover:border-white hover:bg-indigo-500 hover:text-white ">
-        Add to cart
+      <button
+        className="absolute p-3 px-6 text-indigo-800 transition-all border-2 border-indigo-500 rounded-full -bottom-3 dark:bg-green-700 dark:border-green-400 dark:text-white hover:border-white hover:bg-indigo-500 hover:text-white"
+        onClick={handleAddItemToCart}
+      >
+        {isInCart ? " Added to cart" : "Add to cart"}
       </button>
     </div>
   );
