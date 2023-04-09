@@ -13,6 +13,9 @@ const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const user = useAppSelector((state: RootState) => state.user.user);
   const cart = useAppSelector((state: RootState) => state.cart.items);
+  const favorites = useAppSelector(
+    (state: RootState) => state.favorites.favorites,
+  );
 
   const [isOpen, setIsOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
@@ -115,7 +118,7 @@ const Header = () => {
             />
           </svg>
           <div className="absolute p-0.5 bg-red-600 w-6  rounded-full -right-2 -top-5">
-            3
+            {favorites.length}
           </div>
         </button>
 

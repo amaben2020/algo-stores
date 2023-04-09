@@ -1,1 +1,4 @@
 This file is responsible for all logic i.e a controller
+
+Redux persist docs:
+https://github.com/rt2zz/redux-persist/issues/816

@@ -3,6 +3,10 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "~/app/hooks/hooks";
 import { addToCart } from "~/app/redux/features/cart/cart-slice";
+import {
+  addTofavorites,
+  deleteItemFromfavorites,
+} from "~/app/redux/features/favorites/favorites-slice";
 import { RootState } from "~/app/redux/store/store";
 import IProducts from "~/types/types";
 import styles from "./styles.module.css";
@@ -16,9 +20,12 @@ const Card = ({
   price,
   category,
 }: IProducts) => {
-  const isFavorited = false;
-
   const cart = useAppSelector((state: RootState) => state.cart.items);
+  const favorites = useAppSelector(
+    (state: RootState) => state.favorites.favorites,
+  );
+
+  const isFavorited = favorites.findIndex((elem) => elem.id === id) > -1;
 
   const isInCart =
     cart.findIndex((cartItem) => cartItem.id === id) > -1 ? true : false;
@@ -40,11 +47,24 @@ const Card = ({
     toast(`Product ${title} successfully added`);
   };
 
+  const handleAddToFavorites = () => {
+    dispatch(addTofavorites(cartItem));
+    toast(`Product ${title} successfully added to favorites`);
+  };
+
+  const deleteFromFavorites = () => {
+    dispatch(deleteItemFromfavorites(cartItem));
+    toast(`Product ${title} successfully removed from favorites`);
+  };
+
   return (
     <div className="w-96 relative h-[530px] m-6 cursor-pointer rounded-md">
       <div className={styles["image-container"]}>
         {!isFavorited ? (
-          <button className="absolute z-30 text-gray-600 top-4 right-2">
+          <button
+            onClick={handleAddToFavorites}
+            className="absolute z-30 text-gray-600 top-4 right-2"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="gray"
@@ -61,7 +81,10 @@ const Card = ({
             </svg>
           </button>
         ) : (
-          <button className="absolute z-30 text-red-600 top-4 right-2 hover:animate-bounce">
+          <button
+            onClick={deleteFromFavorites}
+            className="absolute z-30 text-red-600 top-4 right-2 hover:animate-bounce"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
