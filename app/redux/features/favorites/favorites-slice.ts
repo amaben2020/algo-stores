@@ -20,7 +20,13 @@ export const favoritesSlice = createSlice({
 
     //TODO: clear favorites after 3 days
 
-    // deleteItemFromfavorites: (state, action: PayloadAction<IProducts>) => {},
+    deleteItemFromfavorites: (state, action: PayloadAction<IProducts>) => {
+      const id = action.payload.id;
+
+      if (id) {
+        state.favorites = state.favorites.filter((elem) => elem.id !== id);
+      }
+    },
   },
 });
 
